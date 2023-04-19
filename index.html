@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Sajjad Hussain">
+  <title>Chat GPT Kit</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="images/chatgpt-favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- START MAIN CONTAINER -->
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- START SIDENAV -->
+      <div class="side-nav col-lg-3 col-md-12">
+
+        <!-- START NEW CHAT BUTTON -->
+        <div class="row p-2">
+          <div class="chat-btn d-flex align-items-center">
+            <span class="d-block">+ New Chat</span>
+          </div>
+        </div>
+
+        <!-- START MODELS -->
+        <div class="row p-2">
+          <label for="gpt-model" class="form-label">Model</label>
+          <select name="gpt-model" id="gpt-model" class="form-select text-light gpt-model">
+            <option value="">model 1</option>
+            <option value="">model 2</option>
+          </select>
+        </div>
+
+        <!-- START TEMPERATURE -->
+        <div class="row p-2">
+          <div class="col-12">
+            <p class="form-label">Temperature</p>
+          </div>
+          <div class="col-10">
+            <input type="range" class="form-range w-100" min="0" max="1" step="0.1" id="gpt-temperature"
+              name="gpt-temperature" value="0" />
+          </div>
+          <div class="col-2 text-end">
+            <output for="gpt-temperature">0</output>
+          </div>
+        </div>
+
+        <!-- START MAXIMUM LENGTH -->
+        <div class="row p-2">
+          <div class="col-12">
+            <p class="form-label">Maximum Length</p>
+          </div>
+          <div class="col-10">
+            <input type="range" class="form-range w-100" min="0" max="2048" step="13" id="gpt-max-len"
+              name="gpt-max-len" value="1500" />
+          </div>
+          <div class="col-2 text-end">
+            <output for="gpt-max-len">1500</output>
+          </div>
+        </div>
+
+        <!-- START TOP P -->
+        <div class="row p-2">
+          <div class="col-12">
+            <p class="form-label">TopP</p>
+          </div>
+          <div class="col-10">
+            <input type="range" class="form-range w-100" min="0" max="1" step="0.01" id="gpt-topP" name="gpt-topP"
+              value="0.07" />
+          </div>
+          <div class="col-2 text-end">
+            <output for="gpt-topP">0.07</output>
+          </div>
+        </div>
+
+        <!-- START FREQUENCY PENALTY -->
+        <div class="row p-2">
+          <div class="col-12">
+            <p class="form-label">Frequency Penalty</p>
+          </div>
+          <div class="col-10">
+            <input type="range" class="form-range w-100" min="0" max="2" step="0.01" id="gpt-frequency"
+              name="gpt-frequency" value="1" />
+          </div>
+          <div class="col-2 text-end">
+            <output for="gpt-frequency">1</output>
+          </div>
+        </div>
+
+        <!-- START PRESENCE PENALTY -->
+        <div class="row p-2">
+          <div class="col-12">
+            <p class="form-label">Presence Penalty</p>
+          </div>
+          <div class="col-10">
+            <input type="range" class="form-range w-100" min="0" max="2" step="0.01" id="gpt-precence"
+              name="gpt-precence" value="0.5" />
+          </div>
+          <div class="col-2 text-end">
+            <output for="gpt-precence">0.5</output>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+          <div class="col-12">
+            <ul class="list-unstyled">
+
+              <!-- START SETTINGS -->
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                  <i class="fas fa-cog"></i> Settings
+                </a>
+              </li>
+
+              <!-- START GET HELP -->
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                  <i class="fas fa-question-circle"></i> Get Help
+                </a>
+              </li>
+
+              <!-- START LOG OUT -->
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                  <i class="fas fa-sign-out-alt"></i> Log Out
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- START CONTENT -->
+      <div class="content  p-0 pt-2 col-lg-9 col-md-12">
+        <div class="chat-content-area">
+
+          <!-- START USER CHAT -->
+          <div class="row user-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/user-icon.png" />
+            </div>
+            <div class="chat-txt">who are you?</div>
+          </div>
+
+          <!-- START GPT CHAT -->
+          <div class="row gpt-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/chatgpt-icon.png" />
+            </div>
+            <div class="chat-txt">
+              I am ChatGPT, a large language model developed by OpenAI. I am
+              an artificial intelligence designed to process and generate
+              human-like text based on the input provided to me. I am here to
+              assist you with any questions or tasks you may have to the best
+              of my abilities!
+            </div>
+          </div>
+
+          <!-- START USER CHAT -->
+          <div class="row user-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/user-icon.png" />
+            </div>
+            <div class="chat-txt">who are you?</div>
+          </div>
+
+          <!-- START GPT CHAT -->
+          <div class="row gpt-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/chatgpt-icon.png" />
+            </div>
+            <div class="chat-txt">
+              I am ChatGPT, a large language model developed by OpenAI. I am
+              an artificial intelligence designed to process and generate
+              human-like text based on the input provided to me. I am here to
+              assist you with any questions or tasks you may have to the best
+              of my abilities!
+            </div>
+          </div>
+
+          <!-- START USER CHAT -->
+          <div class="row user-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/user-icon.png" />
+            </div>
+            <div class="chat-txt">who are you?</div>
+          </div>
+
+          <!-- START GPT CHAT -->
+          <div class="row gpt-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/chatgpt-icon.png" />
+            </div>
+            <div class="chat-txt">
+              I am ChatGPT, a large language model developed by OpenAI. I am
+              an artificial intelligence designed to process and generate
+              human-like text based on the input provided to me. I am here to
+              assist you with any questions or tasks you may have to the best
+              of my abilities!
+            </div>
+          </div>
+
+          <!-- START USER CHAT -->
+          <div class="row user-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/user-icon.png" />
+            </div>
+            <div class="chat-txt">who are you?</div>
+          </div>
+
+          <!-- START GPT CHAT -->
+          <div class="row gpt-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/chatgpt-icon.png" />
+            </div>
+            <div class="chat-txt">
+              I am ChatGPT, a large language model developed by OpenAI. I am
+              an artificial intelligence designed to process and generate
+              human-like text based on the input provided to me. I am here to
+              assist you with any questions or tasks you may have to the best
+              of my abilities!
+            </div>
+          </div>
+
+          <!-- START USER CHAT -->
+          <div class="row user-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/user-icon.png" />
+            </div>
+            <div class="chat-txt">who are you?</div>
+          </div>
+
+          <!-- START GPT CHAT -->
+          <div class="row gpt-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/chatgpt-icon.png" />
+            </div>
+            <div class="chat-txt">
+              I am ChatGPT, a large language model developed by OpenAI. I am
+              an artificial intelligence designed to process and generate
+              human-like text based on the input provided to me. I am here to
+              assist you with any questions or tasks you may have to the best
+              of my abilities!
+            </div>
+          </div>
+
+          <!-- START USER CHAT -->
+          <div class="row user-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/user-icon.png" />
+            </div>
+            <div class="chat-txt">who are you?</div>
+          </div>
+
+          <!-- START GPT CHAT -->
+          <div class="row gpt-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/chatgpt-icon.png" />
+            </div>
+            <div class="chat-txt">
+              I am ChatGPT, a large language model developed by OpenAI. I am
+              an artificial intelligence designed to process and generate
+              human-like text based on the input provided to me. I am here to
+              assist you with any questions or tasks you may have to the best
+              of my abilities!
+            </div>
+          </div>
+
+          <!-- START USER CHAT -->
+          <div class="row user-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/user-icon.png" />
+            </div>
+            <div class="chat-txt">who are you?</div>
+          </div>
+
+          <!-- START GPT CHAT -->
+          <div class="row gpt-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/chatgpt-icon.png" />
+            </div>
+            <div class="chat-txt">
+              I am ChatGPT, a large language model developed by OpenAI. I am
+              an artificial intelligence designed to process and generate
+              human-like text based on the input provided to me. I am here to
+              assist you with any questions or tasks you may have to the best
+              of my abilities!
+            </div>
+          </div>
+
+          <!-- START USER CHAT -->
+          <div class="row user-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/user-icon.png" />
+            </div>
+            <div class="chat-txt">who are you?</div>
+          </div>
+
+          <!-- START GPT CHAT -->
+          <div class="row gpt-chat-box">
+            <div class="chat-icon">
+              <img class="chatgpt-icon" src="images/chatgpt-icon.png" />
+            </div>
+            <div class="chat-txt">
+              I am ChatGPT, a large language model developed by OpenAI. I am
+              an artificial intelligence designed to process and generate
+              human-like text based on the input provided to me. I am here to
+              assist you with any questions or tasks you may have to the best
+              of my abilities!
+            </div>
+          </div>
+        </div>
+
+        <!-- START CHAT INPUTS -->
+        <div class="chat-input-area overflow-hidden">
+          <div class="row">
+            <div class="col-12 chat-inputs-area-inner">
+              <div class="row chat-inputs-container d-flex align-items-center">
+                <textarea name="" id="" class="col-11" placeholder="Send a message"></textarea>
+                <span class="col-1"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- START FOOTER -->
+  <footer class="d-flex align-items-center justify-content-center position-relative bottom-0">
+    <div class="text-center">© 2020 Copyright Sajjad Hussain</div>
+  </footer>
+
+  <!-- START EXTERNAL JS RESOURCES -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/material-ui/5.0.0-beta.5/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/material-ui/5.0.0-beta.5/index.js"></script>
+
+
+</body>
+
+</html>
